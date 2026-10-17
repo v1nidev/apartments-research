@@ -1,0 +1,116 @@
+{
+  "I:7633964": {
+    "verification": "readable",
+    "verified_at": "2026-10-17",
+    "rent": 800,
+    "area": 35.26,
+    "findings": [
+      "The live listing asks €800/month; the imported snapshot said €700.",
+      "Description states 35.26 m², a separate bedroom and an included 12.10 m² outdoor parking space. Structured fields say 41.31 m² and one room, conflicting with the description.",
+      "First rental, first floor, lift. Furnishing, utilities, deposit and agency commission are not confirmed."
+    ]
+  },
+  "I:7630950": {
+    "verification": "readable",
+    "verified_at": "2026-10-17",
+    "deposit": 700,
+    "agency_fee": "No agency commission",
+    "findings": [
+      "€700 rent + approximately €100 utilities; €700 deposit, no agency commission. Available immediately.",
+      "Fully furnished: separate bedroom, dishwasher, washing machine, oven, TV and fibre connection. Eighth floor with a lift.",
+      "Parking conflict: description says paid zone-3 street parking; a structured field says garage. Do not assume a garage is included.",
+      "The building dates to 2008; a recent renovation is not independently confirmed."
+    ]
+  },
+  "I:7552223": {
+    "verification": "readable",
+    "verified_at": "2026-10-17",
+    "deposit": 700,
+    "move_in": "Ask · minimum 1-year lease",
+    "findings": [
+      "€700 rent + utilities, €700 deposit. Minimum one-year contract; for a single person or couple, no pets.",
+      "Fully renovated and furnished, first rental. Free public parking in front of the building.",
+      "Electric heating and new air conditioning. Utilities are described as low but no amount is published. Ask for winter bills.",
+      "Third of four floors; lift is not confirmed. The displayed posting date is 20 September, refreshed 6 October."
+    ],
+    "posted": "2026-09-20"
+  },
+  "I:7631451": {
+    "verification": "readable",
+    "verified_at": "2026-10-17",
+    "condition": "New/renovated",
+    "condition_note": "Renovated 2024 (explicit listing field)",
+    "deposit": 800,
+    "findings": [
+      "Renovation is explicitly dated 2024, upgrading the snapshot’s ‘probably refurbished’ classification.",
+      "€800 rent + approximately €75 utilities; TV/internet chosen separately. €800 deposit and a minimum one-year lease.",
+      "Available only from 15 December 2026. Near KBC Rebro, not KB Dubrava.",
+      "Fully furnished with dishwasher and washer-dryer; gas heating, first floor, free public parking."
+    ]
+  },
+  "I:6884528": {
+    "verification": "readable",
+    "verified_at": "2026-10-17",
+    "furnished": "Partial · no bed or washing machine",
+    "deposit": 1000,
+    "agency_fee": "One month’s rent + VAT",
+    "findings": [
+      "Not move-in furnished: the description explicitly excludes a bed and washing machine. Kitchen and bathroom are new.",
+      "€750 advertised rent; residential rental may be cheaper by agreement. €1,000 deposit and agency commission of one month’s rent + VAT.",
+      "First floor with lift, district heating, free parking nearby. Marketed for either office use or residential use."
+    ]
+  },
+  "I:7156303": {
+    "verification": "readable",
+    "verified_at": "2026-10-17",
+    "mandatory_parking": 100,
+    "furnished": "Kitchen to be equipped · other furniture negotiable",
+    "findings": [
+      "€750 advertised rent + mandatory €100 garage = €850/month before utilities, exceeding the standard €800 budget.",
+      "Owner will equip the kitchen; other furniture and appliances require agreement. Do not assume a fully furnished flat.",
+      "New build 2024, seventh floor with lift, district heating with individual meter, available immediately. No pets.",
+      "Parking dropdown says outdoor parking, but the description explicitly requires a basement garage space."
+    ]
+  },
+  "I:7575512": {
+    "verification": "inactive",
+    "verified_at": "2026-10-17",
+    "deposit": 570,
+    "agency_fee": "No agency commission",
+    "condition_note": "Built 2015, renovated 2023; listing now inactive",
+    "findings": [
+      "Index explicitly marks this listing ‘Ovaj oglas je prodan!’ (taken/sold). It is inactive; the marker does not establish what happened to the rental.",
+      "Retained for reference at €570 + approximately €100 utilities. Do not treat the old ‘available immediately’ description as current availability."
+    ]
+  },
+  "I:7103578": {
+    "verification": "readable",
+    "verified_at": "2026-10-17",
+    "posted": "2025-11-08",
+    "findings": [
+      "€800/month, 45 m², separate bedroom, renovated 2020. Fourth floor in a 1940 building; lift and parking not confirmed.",
+      "Pets explicitly allowed. Agency offers a video and floor plan before a viewing; commission and furnishing need confirmation.",
+      "12 October is the refresh date, not the original posting date (8 November 2025)."
+    ]
+  },
+  "I:6408176": {
+    "verification": "readable",
+    "verified_at": "2026-10-17",
+    "posted": "2024-10-24",
+    "findings": [
+      "€800/month, 90 m², two bedrooms, first floor in a three-apartment building near Grižanska. Furnished, air conditioning, two balconies, storage and one parking space.",
+      "Description says one bathroom plus a separate WC, despite the structured field indicating two bathrooms.",
+      "Original posting is 24 October 2024, refreshed 23 September 2026. The snapshot’s construction and renovation years could not be confirmed on Index. Utilities, deposit and agency fee need confirmation."
+    ]
+  },
+  "I:6773041": {
+    "verification": "readable",
+    "verified_at": "2026-10-17",
+    "posted": "2025-04-25",
+    "findings": [
+      "€800/month, renovated 2024, fully equipped and described as available immediately. Own parking, dishwasher, washing machine and air conditioning.",
+      "Actual description and structured area are 53 m²; the headline says 54 m². Raised ground floor, building from 2006.",
+      "Original posting is 25 April 2025, refreshed 24 September 2026. Utilities, deposit and agency commission are not confirmed."
+    ]
+  }
+}

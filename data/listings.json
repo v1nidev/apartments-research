@@ -1,0 +1,770 @@
+{
+  "snapshot_at": "2026-10-15 20:45",
+  "reviewed_at": "2026-10-17",
+  "listings": [
+    {
+      "id": "I:7633964",
+      "favourite": false,
+      "posted": "2026-10-14",
+      "new_in_snapshot": true,
+      "rent": 700,
+      "original_rent": 700,
+      "utilities": null,
+      "area": 35.3,
+      "rooms": 2,
+      "neighbourhood": "Trnava",
+      "distance": "Medium",
+      "title": "Trnava, new build, first rental, with outdoor parking space",
+      "condition": "New/renovated",
+      "condition_note": "brand-new flat · actual size 35 m² (listing says 41)",
+      "furnished": "Not stated",
+      "parking": "Own space",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.index.hr/oglasi/nekretnine/najam-stanova/oglas/stan/7633964",
+          "label": "Index"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "N:16278754",
+      "favourite": false,
+      "posted": "2026-10-12",
+      "new_in_snapshot": false,
+      "rent": 800,
+      "original_rent": 800,
+      "utilities": null,
+      "area": 55.0,
+      "rooms": 2,
+      "neighbourhood": "Svetice",
+      "distance": "Further",
+      "title": "Flat for rent, Svetice (Trpinjska St.)",
+      "condition": "New/renovated",
+      "condition_note": "new build",
+      "furnished": "Not stated",
+      "parking": "Free public Paid public",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-16278754",
+          "label": "Njuškalo"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "I:7103578",
+      "favourite": false,
+      "posted": "2026-10-12",
+      "new_in_snapshot": false,
+      "rent": 800,
+      "original_rent": 800,
+      "utilities": null,
+      "area": 45.0,
+      "rooms": 2,
+      "neighbourhood": "Maksimir",
+      "distance": "Further",
+      "title": "Maksimir, 45 m², 2-room, 4th floor",
+      "condition": "New/renovated",
+      "condition_note": "renovated 2020",
+      "furnished": "Not stated",
+      "parking": "Not stated",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-48044715",
+          "label": "Njuškalo"
+        },
+        {
+          "url": "https://www.index.hr/oglasi/nekretnine/najam-stanova/oglas/stan/7103578",
+          "label": "Index"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "I:7631451",
+      "favourite": false,
+      "posted": "2026-10-12",
+      "new_in_snapshot": true,
+      "rent": 800,
+      "original_rent": 800,
+      "utilities": 75,
+      "area": 43.0,
+      "rooms": 2,
+      "neighbourhood": "Laščina",
+      "distance": "Further",
+      "title": "Modern 2-room flat just below KBC Rebro, fully equipped",
+      "condition": "Probably refurbished",
+      "condition_note": "“modern” · aimed at doctors and residents",
+      "furnished": "Fully",
+      "parking": "Free public",
+      "move_in": "From 15 Dec 2026",
+      "links": [
+        {
+          "url": "https://www.index.hr/oglasi/nekretnine/najam-stanova/oglas/stan/7631451",
+          "label": "Index"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "I:7630950",
+      "favourite": true,
+      "posted": "2026-10-11",
+      "new_in_snapshot": false,
+      "rent": 700,
+      "original_rent": 700,
+      "utilities": 100,
+      "area": 45.0,
+      "rooms": 2,
+      "neighbourhood": "Studentski grad",
+      "distance": "Close",
+      "title": "Fully furnished 2-room flat, 45 m², Dubrava, near the market, 8th floor with lift",
+      "condition": "Probably refurbished",
+      "condition_note": "2008 building · zone-3 street parking · added at your request",
+      "furnished": "Fully",
+      "parking": "Paid public",
+      "move_in": "Immediately",
+      "links": [
+        {
+          "url": "https://www.index.hr/oglasi/nekretnine/najam-stanova/oglas/stan/7630950",
+          "label": "Index"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "N:51794152",
+      "favourite": true,
+      "posted": "2026-10-09",
+      "new_in_snapshot": false,
+      "rent": 700,
+      "original_rent": 700,
+      "utilities": null,
+      "area": 54.0,
+      "rooms": 3,
+      "neighbourhood": "Studentski grad",
+      "distance": "Close",
+      "title": "Studentski grad, 54 m²",
+      "condition": "New/renovated",
+      "condition_note": "renovated 2026",
+      "furnished": "Not stated",
+      "parking": "Free public",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-51794152",
+          "label": "Njuškalo"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "N:42009217",
+      "favourite": false,
+      "posted": "2026-10-08",
+      "new_in_snapshot": false,
+      "rent": 800,
+      "original_rent": 800,
+      "utilities": null,
+      "area": 40.0,
+      "rooms": 2,
+      "neighbourhood": "Ravnice",
+      "distance": "Medium",
+      "title": "Ravnice, 40 m²",
+      "condition": "New/renovated",
+      "condition_note": "renovated 2024",
+      "furnished": "Not stated",
+      "parking": "Not stated",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-42009217",
+          "label": "Njuškalo"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "N:51470356",
+      "favourite": false,
+      "posted": "2026-10-07",
+      "new_in_snapshot": false,
+      "rent": 650,
+      "original_rent": 650,
+      "utilities": null,
+      "area": 60.65,
+      "rooms": 3,
+      "neighbourhood": "Klaka",
+      "distance": "Close",
+      "title": "Dubrava, 60.65 m²",
+      "condition": "New/renovated",
+      "condition_note": "built 2022",
+      "furnished": "Not stated",
+      "parking": "In description",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-51470356",
+          "label": "Njuškalo"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "N:51754534",
+      "favourite": true,
+      "posted": "2026-10-06",
+      "new_in_snapshot": false,
+      "rent": 650,
+      "original_rent": 650,
+      "utilities": null,
+      "area": 64.0,
+      "rooms": 2,
+      "neighbourhood": "Maksimir",
+      "distance": "Further",
+      "title": "Furnished flat near Maksimir",
+      "condition": "New/renovated",
+      "condition_note": "recently renovated",
+      "furnished": "Not stated",
+      "parking": "Own space",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-51754534",
+          "label": "Njuškalo"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "N:51693449",
+      "favourite": false,
+      "posted": "2026-10-06",
+      "new_in_snapshot": false,
+      "rent": 750,
+      "original_rent": 750,
+      "utilities": null,
+      "area": 43.0,
+      "rooms": 2,
+      "neighbourhood": "Ravnice",
+      "distance": "Medium",
+      "title": "Ravnice, 43 m²",
+      "condition": "New/renovated",
+      "condition_note": "renovated 2026",
+      "furnished": "Not stated",
+      "parking": "Free public",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-51693449",
+          "label": "Njuškalo"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "I:7552223",
+      "favourite": true,
+      "posted": "2026-10-06",
+      "new_in_snapshot": false,
+      "rent": 700,
+      "original_rent": 700,
+      "utilities": null,
+      "area": 40.0,
+      "rooms": 2,
+      "neighbourhood": "Studentski grad",
+      "distance": "Close",
+      "title": "Aleja Blaža Jurišića (Klaka), 40 m², first rental, near KB Dubrava",
+      "condition": "New/renovated",
+      "condition_note": "first rental, fully renovated, new A/C",
+      "furnished": "Fully",
+      "parking": "Free public",
+      "move_in": "Min. 1-year lease",
+      "links": [
+        {
+          "url": "https://www.index.hr/oglasi/nekretnine/najam-stanova/oglas/stan/7552223",
+          "label": "Index"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "N:51508182",
+      "favourite": false,
+      "posted": "2026-10-04",
+      "new_in_snapshot": false,
+      "rent": 800,
+      "original_rent": 800,
+      "utilities": null,
+      "area": 43.0,
+      "rooms": 2,
+      "neighbourhood": "Donje Svetice",
+      "distance": "Further",
+      "title": "2-room flat with balcony and view of Medvednica",
+      "condition": "New/renovated",
+      "condition_note": "built 2013",
+      "furnished": "Not stated",
+      "parking": "Free public",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-51508182",
+          "label": "Njuškalo"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "I:6408176",
+      "favourite": false,
+      "posted": "2026-09-30",
+      "new_in_snapshot": false,
+      "rent": 800,
+      "original_rent": 800,
+      "utilities": null,
+      "area": 90.0,
+      "rooms": 3,
+      "neighbourhood": "Gornja Dubrava",
+      "distance": "Close",
+      "title": "90 m², 3-room, two balconies, parking space (by Grižanska St.)",
+      "condition": "New/renovated",
+      "condition_note": "built 2015, renovated 2020",
+      "furnished": "Fully",
+      "parking": "In description Own space",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-44821731",
+          "label": "Njuškalo"
+        },
+        {
+          "url": "https://www.index.hr/oglasi/nekretnine/najam-stanova/oglas/stan/6408176",
+          "label": "Index"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "N:51292867",
+      "favourite": true,
+      "posted": "2026-09-29",
+      "new_in_snapshot": false,
+      "rent": 850,
+      "original_rent": 850,
+      "utilities": null,
+      "area": 60.59,
+      "rooms": 2,
+      "neighbourhood": "Donje Svetice",
+      "distance": "Further",
+      "title": "Newly refurbished 2-room flat, Donje Svetice, 2nd floor, 2 bathrooms",
+      "condition": "New/renovated",
+      "condition_note": "newly refurbished, fully renovated · €850 (over budget)",
+      "furnished": "Not stated",
+      "parking": "Free public",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-51292867",
+          "label": "Njuškalo"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "I:7575512",
+      "favourite": false,
+      "posted": "2026-09-27",
+      "new_in_snapshot": false,
+      "rent": 570,
+      "original_rent": 570,
+      "utilities": 100,
+      "area": 50.0,
+      "rooms": 2,
+      "neighbourhood": "Gornja Dubrava",
+      "distance": "Close",
+      "title": "Gornja Dubrava, 50 m², above KB Dubrava, one-way street ",
+      "condition": "New/renovated",
+      "condition_note": "built 2015",
+      "furnished": "Fully",
+      "parking": "Free public",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.index.hr/oglasi/nekretnine/najam-stanova/oglas/stan/7575512",
+          "label": "Index"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "I:6773041",
+      "favourite": false,
+      "posted": "2026-09-24",
+      "new_in_snapshot": false,
+      "rent": 800,
+      "original_rent": 800,
+      "utilities": null,
+      "area": 53.0,
+      "rooms": 2,
+      "neighbourhood": "Maksimir",
+      "distance": "Further",
+      "title": "Srebrnjak, 54 m² + own parking space",
+      "condition": "New/renovated",
+      "condition_note": "renovated 2024",
+      "furnished": "Fully",
+      "parking": "In description Own space",
+      "move_in": "Immediately",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-46892745",
+          "label": "Njuškalo"
+        },
+        {
+          "url": "https://www.index.hr/oglasi/nekretnine/najam-stanova/oglas/stan/6773041",
+          "label": "Index"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "I:7156303",
+      "favourite": false,
+      "posted": "2026-09-21",
+      "new_in_snapshot": false,
+      "rent": 750,
+      "original_rent": 750,
+      "utilities": null,
+      "area": 55.0,
+      "rooms": 2,
+      "neighbourhood": "Donje Svetice",
+      "distance": "Further",
+      "title": "Lovinčićeva St. (Peščenica), 55 m², 7th floor with lift",
+      "condition": "New/renovated",
+      "condition_note": "built 2024 · garage space mandatory (+€100/month) · only the kitchen is furnished, the rest by agreement",
+      "furnished": "Kitchen only",
+      "parking": "Garage",
+      "move_in": "Immediately",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-49159055",
+          "label": "Njuškalo"
+        },
+        {
+          "url": "https://www.index.hr/oglasi/nekretnine/najam-stanova/oglas/stan/7156303",
+          "label": "Index"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "I:6884528",
+      "favourite": false,
+      "posted": "2026-09-17",
+      "new_in_snapshot": false,
+      "rent": 750,
+      "original_rent": 750,
+      "utilities": null,
+      "area": 57.0,
+      "rooms": 2,
+      "neighbourhood": "Dubrava",
+      "distance": "Close",
+      "title": "Dubrava, 57 m², 2-room, near the market and tram",
+      "condition": "New/renovated",
+      "condition_note": "new kitchen and bathroom",
+      "furnished": "Not stated",
+      "parking": "Free public In description",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-47467972",
+          "label": "Njuškalo"
+        },
+        {
+          "url": "https://www.index.hr/oglasi/nekretnine/najam-stanova/oglas/stan/6884528",
+          "label": "Index"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "N:47947865",
+      "favourite": true,
+      "posted": "2026-09-08",
+      "new_in_snapshot": false,
+      "rent": 800,
+      "original_rent": 800,
+      "utilities": null,
+      "area": 55.0,
+      "rooms": 2,
+      "neighbourhood": "Donje Svetice",
+      "distance": "Further",
+      "title": "Lovinčićeva 1c, new build",
+      "condition": "New/renovated",
+      "condition_note": "new build 2024",
+      "furnished": "Not stated",
+      "parking": "Own space",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-47947865",
+          "label": "Njuškalo"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "N:51446233",
+      "favourite": true,
+      "posted": "2026-09-04",
+      "new_in_snapshot": false,
+      "rent": 650,
+      "original_rent": 650,
+      "utilities": null,
+      "area": 57.0,
+      "rooms": 2,
+      "neighbourhood": "Grana",
+      "distance": "Further",
+      "title": "Grana, 57 m²",
+      "condition": "New/renovated",
+      "condition_note": "renovated 2025",
+      "furnished": "Not stated",
+      "parking": "Free public",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-51446233",
+          "label": "Njuškalo"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "N:50998255",
+      "favourite": false,
+      "posted": "2026-08-28",
+      "new_in_snapshot": false,
+      "rent": 800,
+      "original_rent": 800,
+      "utilities": null,
+      "area": 43.0,
+      "rooms": 2,
+      "neighbourhood": "Donje Svetice",
+      "distance": "Further",
+      "title": "Modern 2-room flat with garage",
+      "condition": "New/renovated",
+      "condition_note": "built 2013, “modern”",
+      "furnished": "Not stated",
+      "parking": "Garage",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-50998255",
+          "label": "Njuškalo"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "N:50382771",
+      "favourite": false,
+      "posted": "2026-08-25",
+      "new_in_snapshot": false,
+      "rent": 700,
+      "original_rent": 700,
+      "utilities": null,
+      "area": 60.0,
+      "rooms": 2,
+      "neighbourhood": "Maksimir",
+      "distance": "Further",
+      "title": "Maksimir, 60 m²",
+      "condition": "New/renovated",
+      "condition_note": "renovated 2023",
+      "furnished": "Not stated",
+      "parking": "Not stated",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-50382771",
+          "label": "Njuškalo"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "N:51296571",
+      "favourite": false,
+      "posted": "2026-08-20",
+      "new_in_snapshot": false,
+      "rent": 627,
+      "original_rent": 627,
+      "utilities": null,
+      "area": 55.0,
+      "rooms": 3,
+      "neighbourhood": "Ravnice",
+      "distance": "Medium",
+      "title": "Ravnice, 55 m²",
+      "condition": "New/renovated",
+      "condition_note": "renovated 2026",
+      "furnished": "Not stated",
+      "parking": "Paid public",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-51296571",
+          "label": "Njuškalo"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    },
+    {
+      "id": "N:48828415",
+      "favourite": true,
+      "posted": "2026-07-12",
+      "new_in_snapshot": false,
+      "rent": 650,
+      "original_rent": 650,
+      "utilities": null,
+      "area": 55.0,
+      "rooms": 2,
+      "neighbourhood": "Gornja Dubrava",
+      "distance": "Close",
+      "title": "Gornja Dubrava, 55 m²",
+      "condition": "New/renovated",
+      "condition_note": "renovated 2025",
+      "furnished": "Not stated",
+      "parking": "Own space Free public",
+      "move_in": "ask",
+      "links": [
+        {
+          "url": "https://www.njuskalo.hr/nekretnine/stan-oglas-48828415",
+          "label": "Njuškalo"
+        }
+      ],
+      "notes": "",
+      "verification": "unchecked",
+      "findings": [],
+      "deposit": null,
+      "mandatory_parking": 0,
+      "agency_fee": null
+    }
+  ]
+}
