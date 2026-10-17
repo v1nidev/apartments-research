@@ -36,6 +36,23 @@ class LedgerTests(unittest.TestCase):
         self.assertEqual(garage["rent"] + garage["mandatory_parking"], 850)
         self.assertIsNone(garage["utilities"])
 
+    def test_facts_are_not_invented(self):
+        facts = json.loads((ROOT / "data/facts.json").read_text())
+        self.assertTrue(set(facts).issubset({row["id"] for row in self.rows}))
+        self.assertEqual(sum(row.get("dishwasher") is True for row in facts.values()), 4)
+        self.assertEqual(facts["I:7631451"]["available_from"], "2026-12-15")
+        self.assertEqual(facts["I:7103578"]["building_year"], 1940)
+        self.assertTrue(all("drive_minutes" not in row for row in facts.values()))
+
+    def test_published_criteria(self):
+        criteria = json.loads((ROOT / "data/criteria.json").read_text())
+        self.assertEqual(criteria["move_in_by"], "2026-11-08")
+        self.assertEqual(criteria["min_area"], 45)
+        self.assertEqual(criteria["min_building_year"], 1985)
+        self.assertEqual(criteria["lift_from_floor"], 3)
+        self.assertEqual(criteria["max_drive_minutes"], 45)
+        self.assertEqual(criteria["preferred_drive_minutes"], 30)
+
     def test_build_embeds_data_safely(self):
         spec = importlib.util.spec_from_file_location("build", ROOT / "build.py")
         module = importlib.util.module_from_spec(spec)

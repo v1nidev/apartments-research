@@ -10,10 +10,25 @@ Inspired by the Vozni car ledger: sage paper, rust accents, compact comparisons 
 
 1. Edit `data/listings.json` for curated listing details, favourites and notes.
 2. Put verified corrections and findings in `data/research.json`, keyed by listing ID. Research overrides snapshot fields; the page retains an expandable copy of the original row.
+   Put evidence-backed structured features (dishwasher, construction year, floor, lift, availability, long-term terms, measured driving time) in `data/facts.json`. Set the research brief and default checkbox states in `data/criteria.json`.
 3. Run `./publish.sh --check` to build and validate without pushing.
 4. Run `./publish.sh` to build, test, commit the page and its sources, and push.
 
 Only Python 3, Bash and Git are required. Git pushes use SSH as `v1nidev`, independently of the active `gh` account. Changes and notes are published for every viewer; there are deliberately no misleading local-only save controls.
+
+Optional additional logic tests: `node tests/test_rules.cjs` (Node.js is not needed to build or host the page).
+
+## Current research brief
+
+- €800 advertised rent maximum, preserving the original named €850 exception. Show mandatory parking separately.
+- Minimum 45 m²; existing search areas; newer/refurbished condition.
+- Typical driving commute to KB Dubrava: maximum 45 minutes, prefer within 30. No route times have yet been verified.
+- Available by **8 November 2026**; exclude explicit later dates, mark unknown availability as needing checks.
+- Long-term only; no basement/semi-basement; construction year **1985 or later**; lift required from the **3rd floor** upward.
+- Two rooms and separate bedroom are no longer requirements.
+- Dishwasher is prominently labelled yes/no/unknown but is not a filter requirement.
+
+The page has live checkboxes to temporarily enable/disable these criteria. This changes only the current view, never the shared data or the published brief. Known mismatches are excluded by default but remain in the dataset and can be revealed using the criteria-fit selector. Unknown facts remain visible as **needs checking**, never as confirmed matches. The generic price/size filters can narrow this further. “Reset filters” restores the published checkbox defaults too.
 
 ## Local preview
 

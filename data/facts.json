@@ -1,0 +1,16 @@
+{
+  "I:7633964": {"floor": 1, "lift": true, "separate_bedroom": true, "facts_source": "Index manual review, 17 Oct 2026"},
+  "I:7630950": {"building_year": 2008, "floor": 8, "lift": true, "dishwasher": true, "available_from": "2026-10-17", "separate_bedroom": true, "facts_source": "Index manual review, 17 Oct 2026; available immediately when checked"},
+  "I:7552223": {"floor": 3, "long_term": true, "facts_source": "Index manual review, 17 Oct 2026; minimum one year, lift not stated"},
+  "I:7631451": {"building_year": 1965, "floor": 1, "dishwasher": true, "available_from": "2026-12-15", "long_term": true, "separate_bedroom": true, "facts_source": "Index manual review, 17 Oct 2026"},
+  "I:6884528": {"building_year": 1987, "floor": 1, "lift": true, "dishwasher": true, "facts_source": "Index manual review, 17 Oct 2026; lease length not stated"},
+  "I:7156303": {"building_year": 2024, "floor": 7, "lift": true, "available_from": "2026-10-17", "separate_bedroom": true, "facts_source": "Index manual review, 17 Oct 2026; available immediately when checked"},
+  "I:7575512": {"building_year": 2015, "floor": 1, "long_term": true, "separate_bedroom": true, "facts_source": "Index manual review, 17 Oct 2026; now inactive"},
+  "I:7103578": {"building_year": 1940, "floor": 4, "separate_bedroom": true, "facts_source": "Index manual review, 17 Oct 2026; lift not stated"},
+  "I:6408176": {"floor": 1, "separate_bedroom": true, "facts_source": "Index manual review, 17 Oct 2026; snapshot construction year was not confirmed"},
+  "I:6773041": {"building_year": 2006, "floor": 0.5, "dishwasher": true, "available_from": "2026-10-17", "facts_source": "Index manual review, 17 Oct 2026; raised ground floor, available immediately when checked"},
+  "N:51470356": {"building_year": 2022, "facts_source": "Original snapshot only: built 2022; not live-reverified"},
+  "N:51508182": {"building_year": 2013, "facts_source": "Original snapshot only: built 2013; not live-reverified"},
+  "N:47947865": {"building_year": 2024, "facts_source": "Original snapshot only: new build 2024; not live-reverified"},
+  "N:50998255": {"building_year": 2013, "facts_source": "Original snapshot only: built 2013; not live-reverified"}
+}

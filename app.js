@@ -4,6 +4,7 @@ const $ = id => document.getElementById(id);
 const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const euro = value => new Intl.NumberFormat('en-IE', {style:'currency', currency:'EUR', maximumFractionDigits:0}).format(value);
 const distanceOrder = {Close:0, Medium:1, Further:2};
+const criteria = data.criteria;
 let view = 'all';
 let visible = [];
 
@@ -25,15 +26,35 @@ function evidence(row) {
   return badge('Not reverified', 'warn');
 }
 
+function enabledCriteria() {
+  return [...$('criteria-controls').querySelectorAll('input:checked')].map(input => input.value);
+}
+
+function fitFor(row) {
+  return assessCriteria(row, criteria, enabledCriteria());
+}
+
+function fitHtml(row) {
+  const fit = fitFor(row);
+  const label = fit.status === 'mismatch' ? 'Criteria mismatch' : fit.status === 'pending' ? 'Needs checking' : 'Matches enabled criteria';
+  const reasons = [...fit.failed.map(label => `Does not meet: ${label}`), ...fit.unknown.map(label => `Not confirmed: ${label}`)];
+  return badge(label, fit.status === 'mismatch' ? 'bad' : fit.status === 'pending' ? 'warn' : 'good') + (reasons.length ? `<details class="fit-reasons"><summary>${fit.failed.length} mismatch(es) · ${fit.unknown.length} unchecked</summary><ul class="row-findings">${reasons.map(reason => `<li>${escapeHtml(reason)}</li>`).join('')}</ul></details>` : '');
+}
+
+function featuresHtml(row) {
+  const dishwasher = row.dishwasher === true ? 'Dishwasher: yes' : row.dishwasher === false ? 'Dishwasher: no' : 'Dishwasher: unknown';
+  return `<span class="feature-label badge ${row.dishwasher === true ? 'good' : ''}">${dishwasher}</span><span class="detail">Built: ${row.building_year ?? 'unknown'} · Floor: ${row.floor === 0.5 ? 'raised ground' : row.floor ?? 'unknown'} · Lift: ${row.lift === true ? 'yes' : row.lift === false ? 'no' : 'unknown'}</span>${row.facts_source ? `<span class="detail">${escapeHtml(row.facts_source)}</span>` : ''}`;
+}
+
 function rowHtml(row) {
   const total = monthly(row);
   const snapshot = row.snapshot;
   const checks = row.verification === 'unchecked' ? 'Snapshot only · Njuškalo blocked automated access on 17 Oct' : `Checked ${row.verified_at} · availability not landlord-confirmed`;
   return `<tr class="${row.verification === 'inactive' ? 'inactive' : ''}" id="${escapeHtml(row.id.replace(':', '-'))}">
-    <td data-label="Apartment"><div class="area-label">${row.favourite ? '<span class="favourite" aria-label="Favourite">★</span>' : ''}${escapeHtml(row.neighbourhood)}</div><p class="listing-title">${escapeHtml(row.title)}</p>${badge(row.distance + ' to KB Dubrava', row.distance === 'Close' ? 'good' : '')}${evidence(row)}<span class="detail">${escapeHtml(checks)}</span><span class="detail">Posted ${escapeHtml(row.posted)}${snapshot.posted !== row.posted ? ' · corrected from refresh date' : ''}</span></td>
+    <td data-label="Apartment"><div class="area-label">${row.favourite ? '<span class="favourite" aria-label="Favourite">★</span>' : ''}${escapeHtml(row.neighbourhood)}</div><p class="listing-title">${escapeHtml(row.title)}</p>${evidence(row)}${fitHtml(row)}<span class="detail">${row.drive_minutes == null ? 'Drive to KB Dubrava: not measured' : `${row.drive_minutes} min typical drive${row.drive_minutes <= criteria.preferred_drive_minutes ? ' · preferred ≤30 min' : ''}`}</span><span class="detail">Old distance estimate: ${escapeHtml(row.distance)} (not driving time)</span><span class="detail">${escapeHtml(checks)}</span><span class="detail">Posted ${escapeHtml(row.posted)}${snapshot.posted !== row.posted ? ' · corrected from refresh date' : ''}</span></td>
     <td data-label="Monthly cost"><div class="money">${euro(total)}</div><span class="detail">${row.mandatory_parking ? `${euro(row.rent)} rent + ${euro(row.mandatory_parking)} mandatory garage` : 'rent / month'}</span>${total > 800 ? badge('Over €800 budget', 'bad') : ''}${row.original_rent !== row.rent ? `<span class="detail price-change">Was ${euro(row.original_rent)} in snapshot</span>` : ''}<span class="detail">${row.utilities === null ? '+ utilities not stated' : `+ ~${euro(row.utilities)} utilities ≈ ${euro(monthly(row, true))}/mo`}</span>${row.deposit === null ? '<span class="detail">Deposit: ask</span>' : `<span class="detail">Deposit: ${euro(row.deposit)}</span>`}<span class="detail">${escapeHtml(row.agency_fee ?? 'Agency fee: not confirmed')}</span></td>
     <td data-label="Size / rooms"><div class="number">${escapeHtml(row.area)} m²</div><span class="detail">${row.rooms} rooms</span><span class="detail">${euro(Math.round(total / row.area))}/m² rent + parking</span></td>
-    <td data-label="Condition / furnishing">${badge(row.condition, row.condition === 'New/renovated' ? 'good' : 'warn')}<span class="detail">${escapeHtml(row.condition_note)}</span><span class="detail"><strong>${escapeHtml(row.furnished)}</strong></span></td>
+    <td data-label="Condition / furnishing">${badge(row.condition, row.condition === 'New/renovated' ? 'good' : 'warn')}<span class="detail">${escapeHtml(row.condition_note)}</span><span class="detail"><strong>${escapeHtml(row.furnished)}</strong></span>${featuresHtml(row)}</td>
     <td data-label="Parking / move-in"><strong>${escapeHtml(row.parking)}</strong><span class="detail">${row.verification === 'inactive' ? 'Inactive · move-in no longer applicable' : escapeHtml(row.move_in === 'ask' ? 'Move-in: ask' : row.move_in)}</span></td>
     <td data-label="Findings / links">${row.findings.length ? `<p class="findings-summary">${escapeHtml(row.findings[0])}</p><details><summary>All ${row.findings.length} research notes</summary><ul class="row-findings">${row.findings.map(note => `<li>${escapeHtml(note)}</li>`).join('')}</ul></details>` : '<span class="detail">Original snapshot retained. Details have not been reverified.</span>'}${row.notes ? `<p>${escapeHtml(row.notes)}</p>` : ''}${links(row)}<details><summary>Original snapshot</summary><p>${escapeHtml(snapshot.title)}</p><p>${euro(snapshot.rent)} · ${snapshot.area} m² · ${snapshot.rooms} rooms · ${escapeHtml(snapshot.posted)}</p><p>${escapeHtml(snapshot.condition + ': ' + snapshot.condition_note)}</p><p>Furnishing: ${escapeHtml(snapshot.furnished)}. Parking: ${escapeHtml(snapshot.parking)}. Move-in: ${escapeHtml(snapshot.move_in)}.</p></details></td>
   </tr>`;
@@ -48,7 +69,11 @@ function getVisible() {
   const parking = $('parking').value;
   const furnishing = $('furnished').value;
   const condition = $('condition').value;
+  const fitFilter = $('brief-fit').value;
   const filtered = listings.filter(row => {
+    const fit = fitFor(row);
+    if (fitFilter === 'eligible' && fit.status === 'mismatch') return false;
+    if (!['all','eligible'].includes(fitFilter) && fit.status !== fitFilter) return false;
     if (view === 'favourites' && !row.favourite) return false;
     if (!availability && row.verification === 'inactive') return false;
     if (availability && availability !== 'all' && row.verification !== availability) return false;
@@ -84,7 +109,8 @@ function render() {
   $('empty').hidden = visible.length > 0;
   document.querySelector('.table-wrap').hidden = visible.length === 0;
   const unknown = visible.filter(row => row.utilities === null).length;
-  $('result-count').textContent = `${visible.length} of ${view === 'favourites' ? listings.filter(row => row.favourite).length : listings.length} apartments${$('cost-basis').value === 'total' ? ` · ${unknown} with unknown utilities (totals incomplete)` : ''}`;
+  const pending = visible.filter(row => fitFor(row).status === 'pending').length;
+  $('result-count').textContent = `${visible.length} of ${view === 'favourites' ? listings.filter(row => row.favourite).length : listings.length} apartments · ${pending} need criteria checks${$('cost-basis').value === 'total' ? ` · ${unknown} with unknown utilities (totals incomplete)` : ''}`;
   $('export').disabled = visible.length === 0;
 }
 
@@ -98,8 +124,8 @@ function setView(next) {
 }
 
 function exportCsv() {
-  const fields = ['Title','Favourite','Area','Distance estimate','Rent EUR','Mandatory parking EUR','Known utilities EUR','Monthly minimum EUR','Known monthly total EUR','Utilities complete','Deposit EUR','Agency fee','Size m²','Rooms','Condition','Condition evidence','Furnished','Parking','Move-in','Posted','Verification','Checked','Findings','Links'];
-  const rows = visible.map(row => [row.title,row.favourite,row.neighbourhood,row.distance,row.rent,row.mandatory_parking,row.utilities,monthly(row),monthly(row,true),row.utilities !== null,row.deposit,row.agency_fee,row.area,row.rooms,row.condition,row.condition_note,row.furnished,row.parking,row.move_in,row.posted,row.verification,row.verified_at ?? '',row.findings.join(' | '),row.links.map(link => link.url).join(' | ')]);
+  const fields = ['Title','Favourite','Area','Distance estimate','Rent EUR','Mandatory parking EUR','Known utilities EUR','Monthly minimum EUR','Known monthly total EUR','Utilities complete','Deposit EUR','Agency fee','Size m²','Rooms','Condition','Condition evidence','Furnished','Parking','Move-in','Posted','Verification','Checked','Findings','Links','Dishwasher','Construction year','Floor','Lift','Typical drive minutes','Long-term lease','Criteria fit','Failed criteria','Unchecked criteria','Enabled criteria'];
+  const rows = visible.map(row => { const fit = fitFor(row); return [row.title,row.favourite,row.neighbourhood,row.distance,row.rent,row.mandatory_parking,row.utilities,monthly(row),monthly(row,true),row.utilities !== null,row.deposit,row.agency_fee,row.area,row.rooms,row.condition,row.condition_note,row.furnished,row.parking,row.move_in,row.posted,row.verification,row.verified_at ?? '',row.findings.join(' | '),row.links.map(link => link.url).join(' | '),row.dishwasher ?? 'unknown',row.building_year,row.floor,row.lift ?? 'unknown',row.drive_minutes,row.long_term ?? 'unknown',fit.status,fit.failed.join(' | '),fit.unknown.join(' | '),enabledCriteria().join(' | ')]; });
   const cell = value => '"' + String(value ?? '').replace(/^[=+@\-\t\r]/, "'$&").replace(/"/g, '""') + '"';
   const csv = '\ufeff' + [fields,...rows].map(row => row.map(cell).join(',')).join('\r\n');
   const url = URL.createObjectURL(new Blob([csv], {type:'text/csv;charset=utf-8'}));
@@ -111,6 +137,8 @@ function exportCsv() {
 }
 
 $('counters').innerHTML = [[listings.length,'apartments'],[listings.filter(row => row.favourite).length,'favourites'],[listings.filter(row => row.verification !== 'unchecked').length,'pages checked'],[listings.filter(row => row.verification === 'inactive').length,'inactive']].map(([value,label]) => `<div class="counter"><b>${value}</b>${label}</div>`).join('');
+$('criteria-controls').innerHTML = criteria.rules.map(rule => `<label><input type="checkbox" name="criterion" value="${escapeHtml(rule.id)}" ${rule.enabled ? 'checked' : ''}><span><strong>${escapeHtml(rule.label)}</strong><span class="detail">${escapeHtml(rule.description)}</span></span></label>`).join('');
+$('brief-criteria').innerHTML = criteria.rules.map(rule => `<li>${rule.enabled ? '☑' : '☐'} ${escapeHtml(rule.label)} — ${escapeHtml(rule.description)}</li>`).join('');
 $('edition').textContent = `Snapshot: ${data.snapshot_at} · Manual review: ${data.reviewed_at} · 24 imported rows / 29 source links · Times as recorded in source`;
 for (const name of [...new Set(listings.map(row => row.neighbourhood))].sort()) {
   const option = document.createElement('option');
@@ -125,7 +153,9 @@ document.querySelectorAll('[data-view]').forEach(button => button.addEventListen
 $('filters').addEventListener('submit', event => event.preventDefault());
 $('filters').addEventListener('input', render);
 $('filters').addEventListener('change', render);
-$('filters').addEventListener('reset', () => setTimeout(render, 0));
+$('filters').addEventListener('reset', () => { $('criteria-controls').reset(); setTimeout(render, 0); });
+$('criteria-controls').addEventListener('change', render);
+$('criteria-controls').addEventListener('submit', event => event.preventDefault());
 $('empty-reset').addEventListener('click', () => $('filters').reset());
 $('export').addEventListener('click', exportCsv);
 render();

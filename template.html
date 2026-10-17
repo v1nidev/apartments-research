@@ -10,7 +10,7 @@
 </head>
 <body>
   <header class="masthead">
-    <div><p class="eyebrow">Zagreb / apartment research</p><h1>Dubrava <span>ledger</span></h1><p class="subtitle">A place to live. Close to KB Dubrava.</p></div>
+    <div><p class="eyebrow">Zagreb / apartment research</p><h1>Dubrava <span>ledger</span></h1><p class="subtitle">A place to live. Within driving reach of KB Dubrava.</p></div>
     <div class="counters" id="counters"></div>
   </header>
   <nav class="tabs" aria-label="Views">
@@ -23,16 +23,18 @@
     <div class="edition" id="edition"></div>
     <section id="listings-view" aria-label="Apartment listings">
       <div class="notice"><strong>Read-only, shared shortlist.</strong> Favourites and notes are published for everyone. Filters only change your view. No scraper, automatic updates, or browser-only edits.</div>
+      <details class="notice criteria-panel" open><summary><strong>Research criteria — toggle requirements</strong></summary><p>These are your published defaults. Check or uncheck to explore this view; changes are not saved or shared. Known mismatches are hidden by default. Unknown facts stay visible as <strong>needs checking</strong>, not confirmed matches. Dishwasher is a label only, never a requirement.</p><form id="criteria-controls" class="criteria-grid" aria-label="Toggle research criteria"></form></details>
       <form id="filters" class="filters" role="search" aria-label="Filter apartments">
         <label class="search">Search<input id="query" type="search" placeholder="Street, area, feature, finding…"></label>
         <label>Area<select id="neighbourhood"><option value="">All areas</option></select></label>
-        <label>Hospital proximity<select id="distance"><option value="">Any distance</option><option>Close</option><option>Medium</option><option>Further</option></select></label>
+        <label>Old distance estimate<select id="distance"><option value="">Any distance</option><option>Close</option><option>Medium</option><option>Further</option></select></label>
         <label>Max monthly €<input id="max-price" type="number" min="0" step="25" placeholder="No limit"></label>
         <label>Cost basis<select id="cost-basis"><option value="rent">Rent + mandatory parking</option><option value="total">Plus known utilities</option></select></label>
         <label>Min m²<input id="min-area" type="number" min="0" step="5" placeholder="Any size"></label>
         <label>Parking<select id="parking"><option value="">Any / unknown</option><option value="confirmed">Confirmed parking</option><option value="own">Own space / garage</option><option value="free">Free public</option></select></label>
         <label>Furnishing<select id="furnished"><option value="">Any / unknown</option><option value="full">Fully furnished</option><option value="partial">Partial / kitchen only</option><option value="unknown">Not stated</option></select></label>
         <label>Condition<select id="condition"><option value="">All conditions</option><option value="confirmed">Confirmed new / renovated</option><option value="probable">Probably refurbished</option></select></label>
+        <label>Research criteria fit<select id="brief-fit"><option value="eligible">Exclude known mismatches</option><option value="all">Show all, including mismatches</option><option value="mismatch">Known mismatches only</option><option value="pending">Needs checking only</option><option value="matches">Confirmed matches only</option></select></label>
         <label>Availability evidence<select id="verification"><option value="">Exclude inactive</option><option value="all">Include inactive</option><option value="readable">Readable listing</option><option value="unchecked">Not reverified</option><option value="inactive">Inactive only</option></select></label>
         <label>Sort<select id="sort"><option value="favourites">Favourites first</option><option value="price">Lowest monthly cost</option><option value="area">Largest first</option><option value="distance">Closest first</option><option value="posted">Latest posted</option></select></label>
         <button class="button ghost" type="reset">Reset filters</button>
@@ -52,11 +54,12 @@
     <section id="brief-view" class="brief" hidden aria-label="Research criteria">
       <h2>The brief</h2>
       <div class="brief-grid">
-        <article><p class="eyebrow">01 / Budget</p><h3>Up to €800 per month.</h3><p>The original shortlist allows one named €850 exception: the refurbished 60.59 m² Donje Svetice apartment. Mandatory extras are shown explicitly; no listing is silently removed for exceeding the budget.</p></article>
-        <article><p class="eyebrow">02 / Space</p><h3>A separate bedroom.</h3><p>At least two rooms, including a separate bedroom. Seller-entered room counts can conflict with descriptions. Unverified details are retained from the snapshot, not independently certified.</p></article>
-        <article><p class="eyebrow">03 / Location</p><h3>Near KB Dubrava.</h3><p>Gornja Dubrava, Dubrava, Ravnice, Maksimir, Svetice and Donje Svetice, plus the areas already included in the supplied shortlist. Close ≈ up to 2 km; medium ≈ 2–4 km; further ≈ over 4 km. These are inherited estimates, not measured journeys.</p></article>
+        <article><p class="eyebrow">01 / Budget</p><h3>Up to €800 rent.</h3><p>Retain the named €850 exception: the refurbished 60.59 m² Donje Svetice apartment. Mandatory extras are shown separately. Rows outside enabled criteria are hidden by default, not deleted; choose “Show all, including mismatches” to inspect them.</p></article>
+        <article><p class="eyebrow">02 / Space & building</p><h3>45 m² or more. Built from 1985.</h3><p>A lift is required on the 3rd floor or above. No basement or semi-basement. Renovation does not override an old construction year. The original two-room and separate-bedroom requirements are now switched off. Dishwasher is a visible feature, not a requirement.</p></article>
+        <article><p class="eyebrow">03 / Location & timing</p><h3>45-minute drive maximum.</h3><p>Keep the existing search areas; prefer a drive to KB Dubrava within 30 minutes, allow up to 45. Typical driving time needs route evidence; the old neighbourhood-distance labels are not substitutes. Long-term rental only, available by 8 November 2026. Explicit later dates are excluded; unknown dates and lease terms need checking.</p></article>
         <article><p class="eyebrow">04 / Condition</p><h3>Newer or refurbished.</h3><p>New build, renovation from 2019 onward, or explicit claims such as first rental or newly furnished. Evidence and ambiguities are shown alongside each apartment. Photos have not been independently assessed in this review.</p></article>
       </div>
+      <h3>Published checkbox defaults</h3><ul id="brief-criteria"></ul><p>Toggle criteria in the Apartments view to explore alternatives. Checkbox changes are temporary view filters, not edits to this shared research brief.</p>
       <div class="notice"><strong>What was imported:</strong> all 24 visible rows and eight favourites from the supplied HTML snapshot. Its header mentioned 72 total listings, but the hidden rows and 48 rejected entries were not included in the file. Cross-posts stay grouped as one apartment.</div>
       <h3>How to read this page</h3><p><strong>Readable listing</strong> means the page was accessible without an inactive notice when checked. It does not confirm the flat is still available. <strong>Not reverified</strong> means the original snapshot is the only evidence. <strong>Inactive</strong> requires an explicit removal marker.</p>
       <p>Updates are curated in the project’s data file and republished. There is no database, tracking, account, shared-storage dependency, or automatic collection.</p>
@@ -65,6 +68,7 @@
   <footer><span>Dubrava ledger / Zagreb</span><span>Manually curated · No live availability guarantee</span></footer>
   <noscript><p class="notice">Enable JavaScript to view the embedded apartment dataset and filters.</p></noscript>
   <script id="listing-data" type="application/json">{{DATA}}</script>
+  <script>{{RULES}}</script>
   <script>{{SCRIPT}}</script>
 </body>
 </html>

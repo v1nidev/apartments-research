@@ -1,0 +1,26 @@
+{
+  "updated_at": "2026-10-17",
+  "max_rent": 800,
+  "budget_exception": {"id": "N:51292867", "max_rent": 850},
+  "min_area": 45,
+  "min_building_year": 1985,
+  "lift_from_floor": 3,
+  "move_in_by": "2026-11-08",
+  "max_drive_minutes": 45,
+  "preferred_drive_minutes": 30,
+  "neighbourhoods": ["Dubrava", "Gornja Dubrava", "Klaka", "Poljanice", "Studentski grad", "Granešina", "Miroševec", "Novoselec", "Ravnice", "Trnava", "Trnovčica", "Dankovec", "Donje Svetice", "Grana", "Laščina", "Maksimir", "Remete", "Svetice"],
+  "rules": [
+    {"id": "budget", "label": "Rent up to €800", "description": "Retain the original named €850 exception. Mandatory parking and utilities are shown separately.", "enabled": true},
+    {"id": "area", "label": "At least 45 m²", "description": "Use stated apartment area, excluding separately stated parking. Flag conflicting size figures.", "enabled": true},
+    {"id": "neighbourhood", "label": "Existing search areas", "description": "Keep the original Zagreb neighbourhood scope; no requirement to be immediately near KB Dubrava.", "enabled": true},
+    {"id": "condition", "label": "Newer / refurbished", "description": "Newer furnishing, new build, renovation from 2019 onward, or an explicit refurbished / first-rental claim.", "enabled": true},
+    {"id": "commute", "label": "Drive to KB Dubrava ≤45 min", "description": "Prefer ≤30 minutes. Typical driving time, not straight-line distance; parking and walking are separate. Unmeasured journeys need checking.", "enabled": true},
+    {"id": "move_in", "label": "Move in by 8 Nov 2026", "description": "Exclude explicit availability dates after 8 November. Unknown availability needs checking.", "enabled": true},
+    {"id": "long_term", "label": "Long-term rental only", "description": "No seasonal rentals or required summer move-outs. Unknown lease terms need checking.", "enabled": true},
+    {"id": "basement", "label": "No basement / semi-basement", "description": "Unknown floor levels need checking, rather than being assumed above ground.", "enabled": true},
+    {"id": "lift", "label": "Lift on 3rd floor and above", "description": "A lift is optional below the 3rd floor. Unknown floor or required lift access needs checking.", "enabled": true},
+    {"id": "building_year", "label": "Building from 1985 onward", "description": "Construction year, not renovation year. Unknown years need checking; renovation does not exempt an older building.", "enabled": true},
+    {"id": "rooms", "label": "At least two rooms", "description": "Original requirement, now switched off at your request.", "enabled": false},
+    {"id": "bedroom", "label": "Separate bedroom", "description": "Original requirement, now switched off at your request.", "enabled": false}
+  ]
+}
