@@ -11,6 +11,7 @@ Inspired by the Vozni car ledger: sage paper, rust accents, compact comparisons 
 1. Edit `data/listings.json` for curated listing details, favourites and notes.
 2. Put verified corrections and findings in `data/research.json`, keyed by listing ID. Research overrides snapshot fields; the page retains an expandable copy of the original row.
    Put evidence-backed structured features (dishwasher, construction year, floor, lift, availability, long-term terms, measured driving time) in `data/facts.json`. Set the research brief and default checkbox states in `data/criteria.json`.
+   Keep newly researched, unapproved candidates in `data/pending.json`, with full listing fields, `cohort: "pending"`, `favourite: false`, source links, dated evidence and explicit uncertainties. The build merges them for the separate **PENDING REVIEW** tab, never into the default Apartments or Favourites cohorts. Do not overwrite the original 24-row snapshot or invent approval from readable ads.
 3. Run `./publish.sh --check` to build and validate without pushing.
 4. Run `./publish.sh` to build, test, commit the page and its sources, and push.
 
@@ -32,6 +33,8 @@ The page has live checkboxes to temporarily enable/disable these criteria. This 
 
 ## Local preview
 
+Each table row includes the first listing photo when publicly retrievable, linked to its ad. `data/photos.json` records the image URL, source and evidence date. Images load directly from the listing host; unavailable, blocked or expired photos show a clear placeholder rather than an unrelated replacement image.
+
 ```bash
 python3 build.py
 python3 -m http.server 8000
@@ -43,11 +46,14 @@ Open http://localhost:8000. `index.html` also works directly as a local file.
 
 - Snapshot: 15 October 2026 at 20:45, supplied as HTML inside `apartments-artifact.rtf`.
 - All 24 supplied rows, 29 links and eight favourites are preserved. The original header mentioned 72 listings and 48 rejections, but their hidden rows were not supplied and are not fabricated.
+- Eight additional candidates (nine links) live in `data/pending.json`, based on `research/2026-10-17-new-ads.md`. PENDING REVIEW shows all eight with default filters, including the two condition-unknown leads. They are not approved matches; all current vacancies and driving times remain unknown. Research-note cards label this cohort explicitly. Reset restores filters/criteria, keeping the selected tab.
 - Manual review: 17 October 2026. Ten apartments have readable Index pages (nine without an inactive marker, one explicitly inactive). Njuškalo challenged automated access. Fourteen apartments therefore have no live verification beyond the snapshot.
 - A readable page is **not** landlord-confirmed availability. No landlord was contacted. Photos were not independently assessed.
 - `data/listings.json` is a curated seed snapshot, not scraper-owned. `data/research.json` holds subsequent evidence, cost corrections and field conflicts.
 - `import_snapshot.py` is an optional, offline, one-time HTML/RTF converter. It does not visit websites. RTF conversion uses macOS `textutil`. Do not overwrite the curated data by rerunning it after manual edits; inspect its output separately first.
 - Mandatory parking is included in monthly minimums. Unknown utilities are explicitly incomplete, never represented as a verified zero. Deposits and commissions remain separate.
+- Included household bills use `utilities: 0` plus `utilities_included: true` and an explicit scope note (Donja Dubrava €650). Partial inclusion still leaves extra utilities unknown (water-only inclusion at €800). Granešina’s €150-or-€200 occupancy-dependent utilities stay `null` with a range note and €950–€1,000 recurring total, not a false exact €150 bill. Filters/sorts add only a single known utility amount; unresolved totals remain incomplete. CSV leaves the total blank where utilities are unresolved and includes the notes.
+- Pending entries retain original posting dates separately from refresh/review dates. Granešina’s historical June move-in claim is retained as `advertised_available_from` and in notes; `available_from` stays unknown until current vacancy is established. Search-only Njuškalo evidence is explicitly labelled, not presented as direct-page verification. No new €850 exception or changes to the brief were made.
 - Hospital distances are inherited neighbourhood estimates, not measured routes. Old posting/refresh-date conflicts are explained in research notes.
 
 ## Files
