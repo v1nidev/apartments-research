@@ -27,7 +27,7 @@
       <div id="pending-notice" class="notice warning" hidden><strong>PENDING REVIEW — research candidates, none approved.</strong> Separate from the original 24 apartments and eight favourites. Driving times and current vacancies need confirmation; unknown lease terms and condition remain pending. Each row shows its own review date; a readable listing does not mean currently available. No landlord contacted or route measured. Reset filters to see all candidates.</div>
       <details class="notice criteria-panel" open><summary><strong>Research criteria — toggle requirements</strong></summary><p>These are your published defaults. Check or uncheck to explore this view; changes are not saved or shared. Known mismatches are hidden by default. Unknown facts stay visible as <strong>needs checking</strong>, not confirmed matches. Dishwasher is a label only, never a requirement.</p><form id="criteria-controls" class="criteria-grid" aria-label="Toggle research criteria"></form></details>
       <form id="filters" class="filters" role="search" aria-label="Filter apartments">
-        <label class="search">Search<input id="query" type="search" placeholder="Street, area, feature, finding…"></label>
+        <label class="search">Search<input id="query" type="search" placeholder="ID, street, area, feature…"></label>
         <label>Area<select id="neighbourhood"><option value="">All areas</option></select></label>
         <label>Old distance estimate<select id="distance"><option value="">Any distance</option><option>Close</option><option>Medium</option><option>Further</option></select></label>
         <label>Max monthly €<input id="max-price" type="number" min="0" step="25" placeholder="No limit"></label>
@@ -38,7 +38,7 @@
         <label>Condition<select id="condition"><option value="">All conditions</option><option value="confirmed">Confirmed new / renovated</option><option value="probable">Probably refurbished</option></select></label>
         <label>Research criteria fit<select id="brief-fit"><option value="eligible">Exclude known mismatches</option><option value="all">Show all, including mismatches</option><option value="mismatch">Known mismatches only</option><option value="pending">Needs checking only</option><option value="matches">Confirmed matches only</option></select></label>
         <label>Availability evidence<select id="verification"><option value="">Exclude inactive</option><option value="all">Include inactive</option><option value="readable">Readable listing</option><option value="unchecked">Not reverified</option><option value="inactive">Inactive only</option></select></label>
-        <label>Sort<select id="sort"><option value="favourites">Favourites first</option><option value="price">Lowest monthly cost</option><option value="area">Largest first</option><option value="distance">Closest first</option><option value="posted">Latest posted</option></select></label>
+        <label>Sort<select id="sort"><option value="added">Newest added first</option><option value="added-oldest">Oldest added first</option><option value="favourites">Favourites first</option><option value="price">Lowest monthly cost</option><option value="area">Largest first</option><option value="distance">Closest first</option><option value="posted">Latest posted</option></select></label>
         <button class="button ghost" type="reset">Reset filters</button>
       </form>
       <div class="results-bar"><p id="result-count" role="status" aria-live="polite"></p><button id="export" class="button ghost">Export CSV</button></div>

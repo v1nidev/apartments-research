@@ -57,7 +57,7 @@ function rowHtml(row) {
   const total = monthly(row);
   const snapshot = row.snapshot;
   const checks = row.verification === 'unchecked' ? 'Snapshot only · Njuškalo blocked automated access on 17 Oct' : `Checked ${row.verified_at} · availability not landlord-confirmed`;
-  const photo = apartmentPhotoHtml(row);
+  const photo = `${apartmentPhotoHtml(row)}<span class="badge row-id">${escapeHtml(row.id)}</span><span class="detail">Added ${escapeHtml(row.added_at)}</span>`;
   return `<tr class="${row.verification === 'inactive' ? 'inactive' : ''}" id="${escapeHtml(row.id.replace(':', '-'))}">
     <td data-label="Apartment"><div class="area-label">${row.favourite ? '<span class="favourite" aria-label="Favourite">★</span>' : ''}${escapeHtml(row.neighbourhood)}</div><p class="listing-title">${escapeHtml(row.title)}</p>${row.cohort === 'pending' ? badge('PENDING REVIEW · not approved', 'warn') : ''}${evidence(row)}${fitHtml(row)}<span class="detail">${row.drive_minutes == null ? 'Drive to KB Dubrava: not measured' : `${row.drive_minutes} min typical drive${row.drive_minutes <= criteria.preferred_drive_minutes ? ' · preferred ≤30 min' : ''}`}</span>${row.cohort !== 'pending' ? `<span class="detail">Old distance estimate: ${escapeHtml(row.distance)} (not driving time)</span>` : ''}<span class="detail">${escapeHtml(checks)}</span><span class="detail">Posted ${escapeHtml(row.posted)}${snapshot && snapshot.posted !== row.posted ? ' · corrected from refresh date' : ''}${row.refreshed_at ? ` · Refreshed ${escapeHtml(row.refreshed_at)}` : ''}</span></td>
     <td data-label="Monthly cost"><div class="money">${euro(total)}</div><span class="detail">${row.mandatory_parking ? `${euro(row.rent)} rent + ${euro(row.mandatory_parking)} mandatory garage` : 'rent / month'}</span>${total > 800 ? badge('Over €800 budget', 'bad') : ''}${row.original_rent !== row.rent ? `<span class="detail price-change">Was ${euro(row.original_rent)} in snapshot</span>` : ''}${utilitiesHtml(row)}${row.deposit === null ? '<span class="detail">Deposit: ask</span>' : `<span class="detail">Deposit: ${euro(row.deposit)}</span>`}<span class="detail">${escapeHtml(row.agency_fee ?? 'Agency fee: not confirmed')}</span></td>
@@ -101,11 +101,13 @@ function getVisible() {
     if (furnishing === 'unknown' && row.furnished !== 'Not stated') return false;
     if (condition === 'confirmed' && row.condition !== 'New/renovated') return false;
     if (condition === 'probable' && row.condition !== 'Probably refurbished') return false;
-    if (query && ![row.title, row.neighbourhood, row.condition_note, row.parking, row.furnished, row.notes, ...row.findings].join(' ').toLocaleLowerCase().includes(query)) return false;
+    if (query && ![row.id, row.added_at, row.title, row.neighbourhood, row.condition_note, row.parking, row.furnished, row.notes, ...row.findings].join(' ').toLocaleLowerCase().includes(query)) return false;
     return true;
   });
   return filtered.sort((a, b) => {
     switch ($('sort').value) {
+      case 'added': return b.added_at.localeCompare(a.added_at) || a.id.localeCompare(b.id);
+      case 'added-oldest': return a.added_at.localeCompare(b.added_at) || a.id.localeCompare(b.id);
       case 'price': return monthly(a, includeUtilities) - monthly(b, includeUtilities);
       case 'area': return b.area - a.area;
       case 'distance': return distanceOrder[a.distance] - distanceOrder[b.distance] || monthly(a) - monthly(b);
@@ -140,6 +142,8 @@ function setView(next) {
 function exportCsv() {
   const fields = ['Title','Favourite','Area','Distance estimate','Rent EUR','Mandatory parking EUR','Known utilities EUR','Monthly minimum EUR','Known monthly total EUR','Utilities complete','Deposit EUR','Agency fee','Size m²','Rooms','Condition','Condition evidence','Furnished','Parking','Move-in','Posted','Verification','Checked','Findings','Links','Dishwasher','Construction year','Floor','Lift','Typical drive minutes','Long-term lease','Criteria fit','Failed criteria','Unchecked criteria','Enabled criteria','Cohort','Utilities included','Utilities note'];
   const rows = visible.map(row => { const fit = fitFor(row); return [row.title,row.favourite,row.neighbourhood,row.distance,row.rent,row.mandatory_parking,row.utilities,monthly(row),row.utilities === null ? null : monthly(row,true),row.utilities !== null,row.deposit,row.agency_fee,row.area,row.rooms,row.condition,row.condition_note,row.furnished,row.parking,row.move_in,row.posted,row.verification,row.verified_at ?? '',row.findings.join(' | '),row.links.map(link => link.url).join(' | '),row.dishwasher ?? 'unknown',row.building_year,row.floor,row.lift ?? 'unknown',row.drive_minutes,row.long_term ?? 'unknown',fit.status,fit.failed.join(' | '),fit.unknown.join(' | '),enabledCriteria().join(' | '),row.cohort,row.utilities_included ?? false,row.utilities_note ?? '']; });
+  fields.unshift('ID', 'Added to ledger');
+  rows.forEach((row, index) => row.unshift(visible[index].id, visible[index].added_at));
   const cell = value => '"' + String(value ?? '').replace(/^[=+@\-\t\r]/, "'$&").replace(/"/g, '""') + '"';
   const csv = '\ufeff' + [fields,...rows].map(row => row.map(cell).join(',')).join('\r\n');
   const url = URL.createObjectURL(new Blob([csv], {type:'text/csv;charset=utf-8'}));

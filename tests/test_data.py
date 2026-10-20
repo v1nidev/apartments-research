@@ -114,6 +114,13 @@ class LedgerTests(unittest.TestCase):
         self.assertEqual(criteria["max_drive_minutes"], 45)
         self.assertEqual(criteria["preferred_drive_minutes"], 30)
 
+    def test_added_dates_are_first_publication_dates(self):
+        self.assertEqual(self.data["imported_at"], "2026-10-17")
+        for row in self.pending:
+            expected = "2026-10-20" if row["id"] in {"I:6606812", "I:7447190"} else "2026-10-18"
+            self.assertEqual(row["added_at"], expected)
+            date.fromisoformat(row["added_at"])
+
     def test_photo_evidence_covers_all_rows(self):
         photos = json.loads((ROOT / "data/photos.json").read_text())
         self.assertEqual(set(photos), {row["id"] for row in self.rows + self.pending})
@@ -142,6 +149,7 @@ class LedgerTests(unittest.TestCase):
         self.assertEqual(len(originals), 24)
         self.assertEqual(len(pending), len(self.pending))
         self.assertEqual(data["reviewed_at"], "2026-10-20")
+        self.assertTrue(all(row["added_at"] == "2026-10-17" for row in originals))
         self.assertEqual(data["source_count"], 24)
         self.assertEqual(data["source_link_count"], 29)
         self.assertEqual([row["snapshot"] for row in originals], self.rows)
@@ -159,12 +167,12 @@ const seed = JSON.parse(fs.readFileSync('data/listings.json'));
 const research = JSON.parse(fs.readFileSync('data/research.json'));
 const facts = JSON.parse(fs.readFileSync('data/facts.json'));
 seed.criteria = JSON.parse(fs.readFileSync('data/criteria.json'));
-seed.listings = seed.listings.map(row => ({...row, snapshot: {...row}, cohort: 'original', ...research[row.id], ...facts[row.id]}));
+seed.listings = seed.listings.map(row => ({...row, snapshot: {...row}, cohort: 'original', added_at: seed.imported_at, ...research[row.id], ...facts[row.id]}));
 seed.listings.push(...JSON.parse(fs.readFileSync('data/pending.json')));
 const pendingCount = seed.listings.filter(row => row.cohort === 'pending').length;
 const renovatedCount = seed.listings.filter(row => row.cohort === 'pending' && row.condition === 'New/renovated').length;
 const checked = seed.criteria.rules.filter(rule => rule.enabled).map(rule => ({value: rule.id}));
-const defaults = {'cost-basis':'rent', 'brief-fit':'eligible', sort:'favourites'};
+const defaults = {'cost-basis':'rent', 'brief-fit':'eligible', sort:'added'};
 const elements = {};
 const buttons = ['all','favourites','pending','findings','brief'].map(view => ({dataset:{view},setAttribute(){},addEventListener(){}}));
 function element(id) {
@@ -181,6 +189,17 @@ run("setView('favourites')");
 assert.equal(run('viewListings().length'),8);
 run("setView('pending')");
 assert.equal(run('getVisible().length'),pendingCount);
+assert.equal(run('getVisible()[0].id'),'I:6606812');
+assert.equal(run('getVisible()[1].id'),'I:7447190');
+assert.match(element('rows').innerHTML,/Added 2026-10-20/);
+assert.match(element('rows').innerHTML,/row-id">I:6606812/);
+element('sort').value = 'added-oldest';
+assert.equal(run('getVisible()[0].added_at'),'2026-10-18');
+element('query').value = 'I:7447190';
+assert.equal(run('getVisible().length'),1);
+assert.equal(run('getVisible()[0].id'),'I:7447190');
+element('query').value = '';
+element('sort').value = 'added';
 assert.equal(element('pending-notice').hidden,false);
 assert.equal(element('listings-view').hidden,false);
 assert.equal(run("getVisible().every(row => fitFor(row).status === 'pending')"),true);

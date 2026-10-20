@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -15,6 +16,7 @@ def build():
     for row in data["listings"]:
         row["snapshot"] = dict(row)
         row["cohort"] = "original"
+        row["added_at"] = row.get("added_at", data["imported_at"])
         row.update(research.get(row["id"], {}))
         row.update(facts.get(row["id"], {}))
     pending = json.loads((ROOT / "data/pending.json").read_text())
@@ -34,6 +36,7 @@ def build():
         if photo.get("url") and not photo["url"].startswith("https://"):
             raise ValueError("Photo URLs must use HTTPS")
     for row in data["listings"]:
+        date.fromisoformat(row["added_at"])
         if not row["links"] or any(not link["url"].startswith("https://") for link in row["links"]):
             raise ValueError(f"Invalid listing links: {row['id']}")
     payload = json.dumps(data, ensure_ascii=False).replace("<", "\\u003c")

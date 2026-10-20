@@ -31,6 +31,8 @@ Optional additional logic tests: `node tests/test_rules.cjs` (Node.js is not nee
 
 The page has live checkboxes to temporarily enable/disable these criteria. This changes only the current view, never the shared data or the published brief. Known mismatches are excluded by default but remain in the dataset and can be revealed using the criteria-fit selector. Unknown facts remain visible as **needs checking**, never as confirmed matches. The generic price/size filters can narrow this further. “Reset filters” restores the published checkbox defaults too.
 
+Every row shows its stable source-based ID (such as `I:6606812`) and the date it was first added to this ledger, separate from the ad's posting/refresh/review dates. IDs and added dates are searchable and included in CSV. Default sort is **Newest added first**, with an oldest-first option too. The original rows were imported on 17 October; the first eight pending candidates were published on 18 October; subsequent rows carry their own `added_at`. Preserve these dates when rechecking an ad. New pending entries must include `added_at`; the build validates it.
+
 ## Local preview
 
 Each table row includes the first listing photo when publicly retrievable, linked to its ad. `data/photos.json` records the image URL, source and evidence date. Images load directly from the listing host; unavailable, blocked or expired photos show a clear placeholder rather than an unrelated replacement image.
