@@ -21,6 +21,7 @@ def build():
     if any(row.get("cohort") != "pending" or row.get("favourite") for row in pending):
         raise ValueError("Pending candidates must stay separate and unfavourited")
     data["listings"].extend(pending)
+    data["reviewed_at"] = max(row.get("verified_at", data["reviewed_at"]) for row in data["listings"])
     photos = json.loads((ROOT / "data/photos.json").read_text())
     for row in data["listings"]:
         row["photo"] = photos.get(row["id"])

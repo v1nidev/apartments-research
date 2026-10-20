@@ -3,6 +3,7 @@ import json
 import shutil
 import subprocess
 import unittest
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -40,26 +41,28 @@ class LedgerTests(unittest.TestCase):
         self.assertIsNone(garage["utilities"])
 
     def test_pending_cohort_complete_and_separate(self):
-        expected = {"I:7581070", "I:7629165", "I:7372164", "I:6606919", "I:6304518", "I:6318029", "I:7636265", "I:7608454"}
-        self.assertEqual(len(self.pending), 8)
+        expected = {"I:7581070", "I:7629165", "I:7372164", "I:6606919", "I:6304518", "I:6318029", "I:7636265", "I:7608454", "I:6606812", "I:7447190"}
+        self.assertEqual(len(self.pending), 10)
         self.assertEqual({row["id"] for row in self.pending}, expected)
         self.assertTrue(expected.isdisjoint(row["id"] for row in self.rows))
         original_links = {link["url"] for row in self.rows for link in row["links"]}
         new_links = [link["url"] for row in self.pending for link in row["links"]]
-        self.assertEqual(len(new_links), 9)
-        self.assertEqual(len(set(new_links)), 9)
+        self.assertEqual(len(new_links), 11)
+        self.assertEqual(len(set(new_links)), 11)
         self.assertTrue(original_links.isdisjoint(new_links))
         for row in self.pending:
             self.assertTrue(set(self.rows[0]).issubset(row))
             self.assertEqual(row["cohort"], "pending")
             self.assertFalse(row["favourite"])
-            self.assertEqual(row["verified_at"], "2026-10-17")
+            self.assertIn(row["verified_at"], {"2026-10-17", "2026-10-20"})
             self.assertEqual(row["verification"], "readable")
             self.assertIsNone(row["drive_minutes"])
-            self.assertIsNone(row["available_from"])
+            if row["available_from"] is not None:
+                self.assertLessEqual(row["available_from"], "2026-11-08")
             self.assertLessEqual(row["rent"], 800)
             self.assertGreaterEqual(row["area"], 45)
-            self.assertGreaterEqual(row["building_year"], 1985)
+            if row["building_year"] is not None:
+                self.assertGreaterEqual(row["building_year"], 1985)
             self.assertGreaterEqual(len(row["findings"]), 4)
             self.assertTrue(row["facts_source"])
             self.assertTrue(all(link["url"].startswith("https://") for link in row["links"]))
@@ -69,7 +72,7 @@ class LedgerTests(unittest.TestCase):
         for identifier in ["I:7636265", "I:7608454"]:
             self.assertEqual(pending[identifier]["condition"], "No info")
             self.assertIn("pending", pending[identifier]["condition_note"])
-        self.assertEqual(sum(row["condition"] == "New/renovated" for row in self.pending), 6)
+        self.assertEqual(sum(row["condition"] == "New/renovated" for row in self.pending), 7)
         included = pending["I:6304518"]
         self.assertEqual(included["utilities"], 0)
         self.assertTrue(included["utilities_included"])
@@ -83,6 +86,16 @@ class LedgerTests(unittest.TestCase):
         self.assertIn("search-index", pending["I:6606919"]["links"][1]["label"])
         self.assertEqual(pending["I:6304518"]["posted"], "2024-09-06")
         self.assertEqual(pending["I:6606919"]["posted"], "2025-02-04")
+        new_build = pending["I:6606812"]
+        self.assertEqual(new_build["floor"], 4)
+        self.assertIsNone(new_build["lift"])
+        self.assertEqual(new_build["building_year"], 2024)
+        svetice = pending["I:7447190"]
+        self.assertEqual(svetice["rent"], 700)
+        self.assertIsNone(svetice["building_year"])
+        self.assertEqual(svetice["condition"], "No info")
+        self.assertTrue(svetice["long_term"])
+        self.assertEqual(svetice["available_from"], "2026-10-20")
 
     def test_facts_are_not_invented(self):
         facts = json.loads((ROOT / "data/facts.json").read_text())
@@ -107,7 +120,8 @@ class LedgerTests(unittest.TestCase):
         for photo in photos.values():
             self.assertTrue(photo["source"].startswith("https://"))
             self.assertTrue(photo["note"])
-            self.assertEqual(photo["checked_at"], "2026-10-18")
+            date.fromisoformat(photo["checked_at"])
+            self.assertIn(photo["checked_at"], {"2026-10-18", "2026-10-20"})
             self.assertTrue(photo["url"] is None or photo["url"].startswith("https://"))
 
     def test_build_embeds_data_safely(self):
@@ -126,12 +140,13 @@ class LedgerTests(unittest.TestCase):
         originals = [row for row in data["listings"] if row["cohort"] == "original"]
         pending = [row for row in data["listings"] if row["cohort"] == "pending"]
         self.assertEqual(len(originals), 24)
-        self.assertEqual(len(pending), 8)
+        self.assertEqual(len(pending), len(self.pending))
+        self.assertEqual(data["reviewed_at"], "2026-10-20")
         self.assertEqual(data["source_count"], 24)
         self.assertEqual(data["source_link_count"], 29)
         self.assertEqual([row["snapshot"] for row in originals], self.rows)
         self.assertTrue(all("snapshot" not in row for row in pending))
-        self.assertEqual(len({row["id"] for row in data["listings"]}), 32)
+        self.assertEqual(len({row["id"] for row in data["listings"]}), len(self.rows) + len(self.pending))
         self.assertIn('>PENDING REVIEW <span>', html)
 
     @unittest.skipUnless(shutil.which("node"), "Node.js optional UI logic check")
@@ -146,6 +161,8 @@ const facts = JSON.parse(fs.readFileSync('data/facts.json'));
 seed.criteria = JSON.parse(fs.readFileSync('data/criteria.json'));
 seed.listings = seed.listings.map(row => ({...row, snapshot: {...row}, cohort: 'original', ...research[row.id], ...facts[row.id]}));
 seed.listings.push(...JSON.parse(fs.readFileSync('data/pending.json')));
+const pendingCount = seed.listings.filter(row => row.cohort === 'pending').length;
+const renovatedCount = seed.listings.filter(row => row.cohort === 'pending' && row.condition === 'New/renovated').length;
 const checked = seed.criteria.rules.filter(rule => rule.enabled).map(rule => ({value: rule.id}));
 const defaults = {'cost-basis':'rent', 'brief-fit':'eligible', sort:'favourites'};
 const elements = {};
@@ -163,7 +180,7 @@ assert.equal(run("getVisible().some(row => row.cohort === 'pending')"),false);
 run("setView('favourites')");
 assert.equal(run('viewListings().length'),8);
 run("setView('pending')");
-assert.equal(run('getVisible().length'),8);
+assert.equal(run('getVisible().length'),pendingCount);
 assert.equal(element('pending-notice').hidden,false);
 assert.equal(element('listings-view').hidden,false);
 assert.equal(run("getVisible().every(row => fitFor(row).status === 'pending')"),true);
@@ -171,12 +188,12 @@ assert.match(element('rows').innerHTML,/Utilities included in rent/);
 assert.match(element('rows').innerHTML,/€950–€1,000/);
 assert.doesNotMatch(element('rows').innerHTML,/Original snapshot<\/summary>/);
 element('condition').value = 'confirmed';
-assert.equal(run('getVisible().length'),6);
+assert.equal(run('getVisible().length'),renovatedCount);
 element('query').value = 'nonexistent candidate';
 run('render()');
 assert.equal(element('empty').hidden,false);
 element('empty-reset').listeners.click();
-assert.equal(run('getVisible().length'),8);
+assert.equal(run('getVisible().length'),pendingCount);
 assert.equal(run('view'),'pending');
 run("setView('all')");
 assert.equal(element('pending-notice').hidden,true);
